@@ -8,13 +8,24 @@ import app.persistence.TaskMapper;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-
 import java.util.List;
 
 public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool){
-        app.post("/login", ctx -> login(ctx, connectionPool));
+        app.post("login", ctx -> login(ctx, connectionPool));
+        app.get("logout", ctx -> logout(ctx));
+        app.get("createtask", ctx -> createtask(ctx));
+    }
+
+    private static void createtask(Context ctx) {
+
+    }
+
+
+    public static void logout(Context ctx) {
+        ctx.req().getSession().invalidate();
+        ctx.redirect("/");
     }
 
     public static void login(Context ctx, ConnectionPool connectionPool){
@@ -23,11 +34,12 @@ public class UserController {
         String password = ctx.formParam("password");
 
 
-        //Check om bruger findes i DB med de angivne username + password
         try {
 
+            //Check om bruger findes i DB med de angivne username + password
             User user = UserMapper.login(username, password, connectionPool);
             ctx.sessionAttribute("currentUser",user);
+
             //Hvis ja, Send videre til task siden
             List<Task> taskList = TaskMapper.getAllTasksPerUser(user.getUserId(), connectionPool);
             ctx.attribute("taskList", taskList);

@@ -7,21 +7,29 @@
 <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
+<header>
+    <a href="index.html" th:href="@{/}">
+    <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}" width="35%"/>
+    </a>
+</header>
+
 <body>
 
-<h1>Welcome to FourThingsPlus</h1>
-
-<p>Please login</p>
-
-<form method="post">
+<form class="login-form" method="post">
     <input type="text" name="username" placeholder="Enter your username"/>
     <input type="password" name="password" placeholder="Enter your password"/>
 
 
-    <button type="submit" formaction="/login">Log på</button>
+    <button type="submit" formaction="/login">Get access to my mind</button>
 
     <div><p th:text="${message}"></p></div>
 </form>
+
+<div th:if="${session.currentUser != null}">
+    <span th:text="${session.currentUser.username}"></span> |
+    <a href="index.html" th:href="@{/logout}">Logout</a>
+
+</div>
 
 </body>
 </html>

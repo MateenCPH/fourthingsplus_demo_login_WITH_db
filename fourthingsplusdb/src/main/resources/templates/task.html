@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<title>Frontpage</title>
+<title>Taskpage</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
+<header>
+    <a href="index.html" th:href="@{/}">
+        <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}" width="35%"/>
+    </a>
+</header>
+
 <body>
 
 <h1>Welcome, <span th:text="${session.currentUser.username}"></span> </h1>
 
-<h2>Your tasks:</h2>
+<h2>Doing</h2>
 
-<p>Please log in</p>
-
-her er de...
-
-<table>
+<table class="task-table">
     <thead>
         <tr>
             <th>Items</th>
@@ -32,6 +34,10 @@ her er de...
     </tbody>
 
 </table>
+
+<p th:if="${session.currentUser != null}">
+    <a href="index.html" th:href="@{/logout}">Logout</a>
+</p>
 
 </body>
 </html>
