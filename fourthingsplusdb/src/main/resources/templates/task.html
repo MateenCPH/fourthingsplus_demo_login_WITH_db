@@ -17,6 +17,13 @@
 
 <h1>Welcome, <span th:text="${session.currentUser.username}"></span> </h1>
 
+<form method="post" class="generic-form">
+    <input class="input-large" type="text" name="taskname" placeholder="Enter your task to be done"/>
+    <button type="submit" formaction="addtask">Add</button>
+
+
+</form>
+
 <h2>Doing</h2>
 
 <table class="task-table">

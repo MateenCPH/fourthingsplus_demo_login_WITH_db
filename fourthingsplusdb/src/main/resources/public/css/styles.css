@@ -10,16 +10,16 @@ header {
     margin-bottom: 30px;
 }
 
-/* ***************** INDEX STYLES ****************** */
+/* ***************** GENERAL STYLES ****************** */
 
-.login-form input[type="text"], .login-form input[type="password"]{
+.generic-form input[type="text"], .generic-form input[type="password"]{
     padding: 10px;
     font-size: 1.2rem;
     margin-right: 10px;
     border-radius: 5px;
 }
 
-.login-form button {
+.generic-form button {
     padding: 10px;
     font-size: 1.2rem;
     border-radius: 5px;
@@ -27,11 +27,13 @@ header {
     color: white;
 }
 
-.login-form button:hover{
+.generic-form button:hover{
     background-color: lightgreen;
 }
 
-
+.input-large{
+    width: 300px;
+}
 
 
 

@@ -17,7 +17,6 @@ public class UserController {
         app.get("logout", ctx -> logout(ctx));
         app.get("createuser", ctx -> ctx.render("createuser.html"));
         app.post("createuser", ctx -> createuser(ctx, connectionPool));
-        app.get("createtask", ctx -> createtask(ctx));
     }
 
     private static void createuser(Context ctx, ConnectionPool connectionPool){
@@ -31,25 +30,15 @@ public class UserController {
                 ctx.attribute("message", "Du er hermed oprettet med brugernavn " + username +
                         ". Nu skal du logge på");
                 ctx.render("index.html");
-
-
             } catch (DatabaseException e) {
                 ctx.attribute("message", "Dit brugernavn findes allerede! Prøv igen, eller log ind");
                 ctx.render("createuser.html");
             }
-
-
-
         } else {
             ctx.attribute("message", "Dine to passwords matcher ikke! Prøv igen noob");
             ctx.render("createuser.html");
         }
     }
-
-    private static void createtask(Context ctx) {
-
-    }
-
 
     public static void logout(Context ctx) {
         ctx.req().getSession().invalidate();
