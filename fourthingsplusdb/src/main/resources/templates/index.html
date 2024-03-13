@@ -11,7 +11,17 @@
 
 <h1>Welcome to FourThingsPlus</h1>
 
-<p>Add your tasks</p>
+<p>Please login</p>
+
+<form method="post">
+    <input type="text" name="username" placeholder="Enter your username"/>
+    <input type="password" name="password" placeholder="Enter your password"/>
+
+
+    <button type="submit" formaction="/login">Log på</button>
+
+    <div><p th:text="${message}"></p></div>
+</form>
 
 </body>
 </html>
