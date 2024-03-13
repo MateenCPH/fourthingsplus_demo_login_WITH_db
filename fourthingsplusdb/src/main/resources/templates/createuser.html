@@ -17,10 +17,11 @@
 
 <form class="login-form" method="post">
     <input type="text" name="username" placeholder="Enter your username"/>
-    <input type="password" name="password" placeholder="Enter your password"/>
+    <input type="password" name="password1" placeholder="Enter your password"/>
+    <input type="password" name="password2" placeholder="Enter your password again"/>
 
 
-    <button type="submit" formaction="/login">Get access to my mind</button>
+    <button type="submit" formaction="/createuser">Create account</button>
 
     <div><p th:text="${message}"></p></div>
 </form>

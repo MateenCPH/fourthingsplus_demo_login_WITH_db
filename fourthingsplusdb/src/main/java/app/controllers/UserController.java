@@ -15,7 +15,35 @@ public class UserController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool){
         app.post("login", ctx -> login(ctx, connectionPool));
         app.get("logout", ctx -> logout(ctx));
+        app.get("createuser", ctx -> ctx.render("createuser.html"));
+        app.post("createuser", ctx -> createuser(ctx, connectionPool));
         app.get("createtask", ctx -> createtask(ctx));
+    }
+
+    private static void createuser(Context ctx, ConnectionPool connectionPool){
+        String username = ctx.formParam("username");
+        String password1 = ctx.formParam("password1");
+        String password2 = ctx.formParam("password2");
+
+        if (password1.equals(password2)){
+            try {
+                UserMapper.createuser(username,password1,connectionPool);
+                ctx.attribute("message", "Du er hermed oprettet med brugernavn " + username +
+                        ". Nu skal du logge på");
+                ctx.render("index.html");
+
+
+            } catch (DatabaseException e) {
+                ctx.attribute("message", "Dit brugernavn findes allerede! Prøv igen, eller log ind");
+                ctx.render("createuser.html");
+            }
+
+
+
+        } else {
+            ctx.attribute("message", "Dine to passwords matcher ikke! Prøv igen noob");
+            ctx.render("createuser.html");
+        }
     }
 
     private static void createtask(Context ctx) {
