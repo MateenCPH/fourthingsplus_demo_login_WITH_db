@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Createtaskpage</title>
+</head>
+<body>
+
+<h1>Her kan du oprette tasks</h1>
+
+<div class="container">
+    <form class="login-form" method="post">
+        <input type="text" name="taskname" placeholder="Enter the task-name"/>
+
+        <button type="submit" formaction="/createtask">Add task to my list</button>
+    </form>
+    <div><p th:text="${message}"></p></div>
+</div>
+
+</body>
+</html>

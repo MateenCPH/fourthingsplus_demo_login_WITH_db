@@ -18,9 +18,23 @@
 
 <h1>Welcome, <span th:text="${session.currentUser.username}"></span></h1>
 
+
+<h1>Her kan du oprette tasks</h1>
+<div class="login-form">
+    <form class="login-form" method="post">
+        <input type="text" name="taskname" placeholder="Enter the task-name"/>
+        <button type="submit" formaction="/createtask">Add task to my list</button>
+    </form>
+</div>
+
+<div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
+
+
 <form method="post" class="generic-form">
     <input class="input-large" type="text" name="taskname" placeholder="Enter your task to be done"/>
     <button type="submit" formaction="addtask">Add</button>
+
+
 </form>
 
 <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
@@ -70,6 +84,53 @@
         </tr>
         </tbody>
     </table>
+</form>
+        </thead>
+        <tbody>
+        <tr th:each="task: ${taskList}" th:if="${not task.done}">
+            <td th:text="${task.name}"></td>
+            <td>
+                <button type="submit" name="taskId" th:value="${task.taskid}" formaction="/done">Done</button>
+                <form method="post" action="/edittask">
+                    <input type="hidden" name="taskId" th:value="${task.taskid}" />
+                    <button type="submit" class="edit-button">Edit</button>
+                </form>
+                <button type="submit">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<h2>Done</h2>
+<form method="post">
+    <table class="task-table">
+        <thead>
+        <tr>
+            <th>Items</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task: ${taskList}" th:if="${task.done}">
+            <td th:text="${task.name}"></td>
+            <td>
+                <button type="submit" name="taskId" th:value="${task.taskid}" formaction="/undo">Undo</button>
+                    <input type="hidden" name="taskId" th:value="${task.taskid}" />
+                    <button type="submit" class="edit-button" formaction="/edittask">Edit</button>
+                <button type="submit">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+
+<form id="edit-form" method="post" style="display: none;">
+    <input type="text" id="edited-task-name" name="taskname">
+    <button type="submit" id="submit-edit" name="taskId" formaction="/updatetask">Update
+        Task
+    </button>
 </form>
 
 <p th:if="${session.currentUser != null}">

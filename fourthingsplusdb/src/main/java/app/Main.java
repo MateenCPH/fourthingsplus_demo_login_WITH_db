@@ -30,6 +30,11 @@ public class Main {
 
         app.get("/", ctx ->  ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
+<<<<<<< Updated upstream
         TaskController.addRoutes(app,connectionPool);
+=======
+        TaskController.addRoutes(app, connectionPool);
+
+>>>>>>> Stashed changes
     }
 }

@@ -40,6 +40,10 @@ public class UserController {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     public static void logout(Context ctx) {
         ctx.req().getSession().invalidate();
         ctx.redirect("/");
