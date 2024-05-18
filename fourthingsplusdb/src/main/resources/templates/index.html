@@ -2,34 +2,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <title>Frontpage</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
-<header>
+<header class="header-container">
     <a href="index.html" th:href="@{/}">
-    <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}" width="35%"/>
+        <img src="../public/images/fourthingsplus.png" th:src="@{/images/fourthingsplus.png}"/>
     </a>
+    <div class="menubutton-container">
+        <div class="menu-button"></div>
+        <div class="menu-button"></div>
+        <div class="menu-button"></div>
+    </div>
 </header>
 
 <body>
+<div class="body-container">
 
-<form class="generic-form" method="post">
-    <input type="text" name="username" placeholder="Enter your username"/>
-    <input type="password" name="password" placeholder="Enter your password"/>
+    <form class="generic-form" method="post">
+        <input type="text" name="username" placeholder="Enter your username"/><br/>
+        <input type="password" name="password" placeholder="Enter your password"/><br/><br/>
+        <button type="submit" id="login-button-font" formaction="/login">Get access to my mind</button>
 
+        <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
+    </form>
 
-    <button type="submit" formaction="/login">Get access to my mind</button>
+    <div class="generic-form" id="logout-create-account-button-style">
+        <div th:if="${session.currentUser != null}">
+            <span th:text="${session.currentUser.username}"></span>
+            <a href="index.html" th:href="@{/logout}">Logout</a>
+        </div>
+        <br/><br/>
+        <a href="createuser.html" th:href="@{/createuser}">Create account</a>
+    </div>
 
-    <div><p th:text="${message}"></p></div>
-</form>
-
-<div th:if="${session.currentUser != null}">
-    <span th:text="${session.currentUser.username}"></span> |
-    <a href="index.html" th:href="@{/logout}">Logout</a>
 </div>
-<a href="createuser.html" th:href="@{/createuser}">Create account</a>
-
 </body>
 </html>

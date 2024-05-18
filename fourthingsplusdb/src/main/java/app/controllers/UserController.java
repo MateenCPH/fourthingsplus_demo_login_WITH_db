@@ -50,7 +50,6 @@ public class UserController {
         String username = ctx.formParam("username");
         String password = ctx.formParam("password");
 
-
         try {
 
             //Check om bruger findes i DB med de angivne username + password

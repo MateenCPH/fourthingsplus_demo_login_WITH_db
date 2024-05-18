@@ -1,46 +1,119 @@
 /* Stylesheet for the application */
 
-h1 {
-    color: blue;
+* {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 3rem;
 }
 
+/* *********** FORM ************ */
+form {
+    padding: 20px 60px 30px 60px;
+    border-top: 9px solid #f1f1f1;
+}
+
+/* *********** HEADER ********** */
+
 header {
-    margin-bottom: 30px;
+    text-align: center;
+}
+
+header img {
+    width: 30%;
+}
+
+/* *********** MENU-BUTTON ************ */
+
+.menubutton-container {
+    display: inline-block;
+    text-align: end;
+    margin-left: 30px;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+
+.menu-button {
+    align-items: end;
+    width: 35px;
+    height: 3px;
+    background-color: black;
+    margin: 5px 0;
+}
+
+
+/* ************ INDEX BODY ************ */
+.body-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align vertically */
+    align-items: center; /* Align horizontally */
+    height: 80vh; /* Set height to full viewport height */
+    text-align: center;
+}
+
+#login-button-font {
+    font-size: 1.3rem;
+}
+
+#logout-create-account-button-style{
+    padding: 40px 350px 80px 350px;
+    border-bottom: 9px solid #f1f1f1;
+    border-top: none;
+}
+
+#logout-create-account-button-style a{
+    background-color: #461A0E;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 40%;
 }
 
 /* ***************** GENERAL STYLES ****************** */
 
 .generic-form input[type="text"], .generic-form input[type="password"]{
-    padding: 10px;
+    width: 90%;
+    padding: 10px 20px;
     font-size: 1.2rem;
-    margin-right: 10px;
+    margin-top: 30px;
+    display: inline-block;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .generic-form button {
-    padding: 10px;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    background-color: darkgreen;
+    background-color: #461A0E;
     color: white;
+    padding: 14px 20px 14px 20px;
+    margin: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90%;
 }
 
-.generic-form button:hover{
-    background-color: lightgreen;
+.generic-form button:hover {
+    opacity: 0.8;
 }
 
-.input-large{
+.input-large {
     width: 300px;
 }
 
-
+.error {
+    border: 1px solid red;
+    padding: 10px;
+    color: red;
+    max-width: 400px;
+}
 
 
 /* ***************** TASK STYLES ******************* */
 
-.task-table{
+.task-table {
     border-collapse: collapse;
     font-size: 1.2rem;
     margin-top: 20px;
@@ -52,13 +125,22 @@ header {
     padding: 10px;
 }
 
-.task-table tr:nth-child(even){
+.task-table tr:nth-child(even) {
     background-color: silver;
 }
 
-/*img{
-    height: auto;
-    max-width: 100%;
-    text-align: center;
-    object-fit: fill;
-}*/
+
+/* **************** MEDIA QUERIES ****************** */
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    header img {
+        width: 50%;
+    }
+
+    .generic-form input[type="text"],
+    .generic-form input[type="password"],
+    .generic-form button,
+    #logout-create-account-button-style{
+        width: 70%;
+    }
+}
